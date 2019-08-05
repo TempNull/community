@@ -1,0 +1,8 @@
+
+
+
+person:
+  name: liuqingle
+  age: 24
+server:
+  port: 8808
