@@ -6,12 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Springboot-demo" />
         <module name="Springbootdemo" />
         <module name="demo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Springboot-demo" target="1.8" />
       <module name="Springbootdemo" target="1.8" />
     </bytecodeTargetLevel>
   </component>

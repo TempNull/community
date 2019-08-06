@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class quick3 {
+public class PropertiesTestController {
     @Value("${person.name}")
     private String name;
 
 
-    @RequestMapping("/quick3")
+    @RequestMapping("/propertiesTes")
     @ResponseBody
 
     public String quick3(){
