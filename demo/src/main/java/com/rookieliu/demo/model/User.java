@@ -6,6 +6,7 @@ public class User {
     private String login;
     private String accountId;
     private String token;
+    private String bio;
     private Long gmtCreate;
     private Long gmtModified;
 
@@ -15,6 +16,14 @@ public class User {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
     public String getName() {
