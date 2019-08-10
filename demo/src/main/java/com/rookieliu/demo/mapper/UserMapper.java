@@ -10,12 +10,20 @@ public interface UserMapper {
     void insert(User user);
 
 
-    @Results(id = "userResult",value = {
-        @Result(property = "accountId",column = "account_Id"),
-        @Result(property = "gmtCreate",column = "gmt_create"),
-        @Result(property = "gmtModified",column = "gmt_modified"),
-        @Result(property = "avatarUrl",column = "avatar_url")
-    })
+//    @Results(id = "findUserByToken",value = {
+//        @Result(property = "accountId",column = "account_Id"),
+//        @Result(property = "gmtCreate",column = "gmt_create"),
+//        @Result(property = "gmtModified",column = "gmt_modified"),
+//        @Result(property = "avatarUrl",column = "avatar_url")
+//    })
     @Select("select * from user where token=#{token}")
     User findByToken(@Param("token") String token);
+
+//    @Results(id = "findUserById",value = {
+//            @Result(property = "gmtCreate",column = "gmt_create"),
+//            @Result(property = "gmtModified",column = "gmt_modified"),
+//            @Result(property = "avatarUrl",column = "avatar_url")
+//    })
+    @Select("select * from user where account_id=#{accountId} limit 1")
+    User findById(@Param("accountId") Integer accountId);
 }
