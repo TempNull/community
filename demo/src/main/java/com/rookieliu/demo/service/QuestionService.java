@@ -1,5 +1,6 @@
 package com.rookieliu.demo.service;
 
+import com.rookieliu.demo.dto.PaginationDTO;
 import com.rookieliu.demo.dto.QuestionDTO;
 import com.rookieliu.demo.mapper.QuestionMapper;
 import com.rookieliu.demo.mapper.UserMapper;
@@ -22,17 +23,29 @@ public class QuestionService {
     private UserMapper userMapper;
 
 
-    public List<QuestionDTO> list() {
-        List<Question> questions = questionMapper.list();
+    public PaginationDTO list(Integer page, Integer size) {
+
+        PaginationDTO paginationDTO = new PaginationDTO();
+        Integer totalCount = questionMapper.count();
+        paginationDTO.setPagination(totalCount,page,size);
+        page = page < 1 ? 1 : page;
+        page = page > paginationDTO.getTotalPage() ? paginationDTO.getTotalPage()  : page;
+
+        Integer offset = size * (page - 1);
+        List<Question> questions = questionMapper.list(offset, size);
         List<QuestionDTO> questionDTOList = new ArrayList<>();
+
         for (Question question : questions) {
-            User user =  userMapper.findById(question.getCreator());
+            User user = userMapper.findById(question.getCreator());
             QuestionDTO questionDTO = new QuestionDTO();
-            BeanUtils.copyProperties(question,questionDTO);
+            BeanUtils.copyProperties(question, questionDTO);
             questionDTO.setUser(user);
             questionDTOList.add(questionDTO);
         }
+        paginationDTO.setQuestions(questionDTOList);
 
-        return questionDTOList;
+
+
+        return paginationDTO;
     }
 }

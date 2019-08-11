@@ -1,5 +1,6 @@
 package com.rookieliu.demo.controller;
 
+import com.rookieliu.demo.dto.PaginationDTO;
 import com.rookieliu.demo.dto.QuestionDTO;
 import com.rookieliu.demo.mapper.QuestionMapper;
 import com.rookieliu.demo.mapper.UserMapper;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +29,9 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(HttpServletRequest request,
-                        Model model){
+                        Model model,
+                        @RequestParam(name = "page",defaultValue = "1") Integer page,
+                        @RequestParam(name = "size",defaultValue = "5") Integer size){
         Cookie[] cookies = request.getCookies();
         if(cookies == null){
             return "index";
@@ -43,9 +47,9 @@ public class IndexController {
             }
         }
 
-        List<QuestionDTO> questionList = questionService.list();
+        PaginationDTO pagination = questionService.list(page,size);
 
-        model.addAttribute("questions",questionList);
+        model.addAttribute("pagination",pagination);
         return "index";
     }
 }
