@@ -13,9 +13,6 @@
     <artifactId>Springboot</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>Springboot-demo</module>
-    </modules>
 
 
 </project>
