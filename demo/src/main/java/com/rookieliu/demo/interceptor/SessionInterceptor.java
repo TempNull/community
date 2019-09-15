@@ -3,6 +3,7 @@ package com.rookieliu.demo.interceptor;
 import com.rookieliu.demo.mapper.UserMapper;
 import com.rookieliu.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author: Liu Qingle
  * @create: 2019-09-08 21:31
  **/
+
+@Service
 public class SessionInterceptor implements HandlerInterceptor {
 
     @Autowired
